@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Group 13 GUI University Degree Program</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"
+        integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
+        rel="stylesheet" />
+
+    <script type="text/javascript">
+        let endpoint = "http://127.0.0.1:5000/"
+        let degreeOptions, goalOptions, deptOptions, coursesOptions, instructorOptions, sectionsOptions, evalObj, goalCoursesOptions = []
+    </script>
+
+    <script src="DB Project Group 13.js"></script>
+
+    <style>
+        textarea {
+            resize: none;
+        }
+
+        #count_message {
+            background-color: smoke;
+            margin-top: -20px;
+            margin-right: 5px;
+        }
+
+        .ui-datepicker-calendar {
+            display: none;
+        }
+
+        .modal-header .close {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="constainer .d-inline">
+        <div class="jumbotron">
+            <h1 class="display-1">University 13 Degree Program</h1>
+        </div>
+    </div>
+    <form name="degreeProgram" id="degreeForm">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="insert-tab" data-bs-toggle="tab" data-bs-target="#insert"
+                    type="button" role="tab" aria-controls="insert" aria-selected="true">Add to System</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="query-tab" data-bs-toggle="tab" data-bs-target="#query" type="button"
+                    role="tab" aria-controls="query" aria-selected="false">Query Info</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <br>
+            <div class="tab-pane fade show active" id="insert" role="tabpanel" aria-labelledby="insert-tab">
+                <div class="form-inline">
+                    <div class="container">
+                        <select class="form-select form-select-lg mb-3" id="insertSelect">
+                            <option selected>Choose an Option to Add to System</option>
+                            <option value="Departments">Departments</option>
+                            <option value="Degrees">Degrees</option>
+                            <option value="Courses">Courses</option>
+                            <option value="Goals">Goals</option>
+                            <option value="Goal_Courses">Courses that Goals Use</option>
+                            <option value="Degree_Goals">Goals that Degrees Use</option>
+                            <option value="Instructors">Instructors</option>
+                            <option value="Sections">Course Sections</option>
+                            <option value="Evaluations">Course Evaluations</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none insert-group" id="Departments">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Dept Code</span>
+                            <input type="text" class="form-control text-input-insert" id="deptCode"
+                                aria-describedby="inputGroup-sizing-default" maxlength="2">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Dept Name</span>
+                            <input type="text" class="form-control text-input-insert" id="deptName" name="deptName"
+                                aria-describedby="inputGroup-sizing-default" maxlength="100">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none insert-group" id="Degrees">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="degreeLevel">Degree Level</label>
+                            <select class="form-select" id="degreeLevel">
+                                <option value="BA">BA</option>
+                                <option value="BS">BS</option>
+                                <option value="MS">MS</option>
+                                <option value="PHD">Ph.D.</option>
+                                <option value="Cert">Cert</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3 d-none" id="degreeOtherDiv">
+                            <span class="input-group-text">Degree Level Other</span>
+                            <input type="text" class="form-control text-input-insert" id="degreeOther"
+                                aria-describedby="inputGroup-sizing-default" maxlength="50">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Degree Name</span>
+                            <input type="text" class="form-control text-input-insert" id="degreeName"
+                                aria-describedby="inputGroup-sizing-default" maxlength="100">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="degreeDeptCode">Department</label>
+                            <select class="form-select" id="degreeDeptCode">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none insert-group" id="Courses">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Course ID</span>
+                            <span class="input-group-text" id="deptCodePrefix"></span>
+                            <input type="text" class="form-control numeric-input" id="courseID"
+                                aria-describedby="inputGroup-sizing-default" maxlength="4">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Course Name</span>
+                            <input type="text" class="form-control text-input-insert" id="courseName"
+                                aria-describedby="inputGroup-sizing-default" maxlength="100">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="coursesDeptCode">Department</label>
+                            <select class="form-select" id="coursesDeptCode">
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="coreClass">
+                                <label class="form-check-label" for="coreClass">Core Class</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none insert-group" id="Goals">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Goal Code</span>
+                            <input type="text" class="form-control text-input-insert" id="goalCode"
+                                aria-describedby="inputGroup-sizing-default" maxlength="4">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Goal Description</span>
+                            <input type="text" class="form-control text-input-insert" id="goalDesc"
+                                aria-describedby="inputGroup-sizing-default" maxlength="255">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none insert-group" id="Goal_Courses">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="goalCoursesGoalList">Select a Goal</label>
+                            <select class="form-select" id="goalCoursesGoalList">
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="goalCoursesCourseList">Select a Course</label>
+                            <select class="form-select" id="goalCoursesCourseList">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none insert-group" id="Degree_Goals">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="degreeGoalsGoalList">Select a Goal</label>
+                            <select class="form-select" id="degreeGoalsGoalList">
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="degreeGoalsDegreeList">Select a Degree</label>
+                            <select class="form-select" id="degreeGoalsDegreeList">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none insert-group" id="Instructors">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Instructor ID</span>
+                            <input type="text" class="form-control text-input-insert" id="instructorID"
+                                aria-describedby="inputGroup-sizing-default" maxlength="8">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Instructor Name</span>
+                            <input type="text" class="form-control text-input-insert" id="instructorName"
+                                aria-describedby="inputGroup-sizing-default" maxlength="100">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="instDeptCode">Department</label>
+                            <select class="form-select" id="instDeptCode">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none insert-group" id="Sections">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="semester">Semester</label>
+                            <select class="form-select" id="semester">
+                                <option value="Spring">Spring</option>
+                                <option value="Summer">Summer</option>
+                                <option value="Fall">Fall</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Section Year</span>
+                            <input class="date-own form-control" style="width: 300px;" type="text" id="sectionYear"
+                                maxlength="4">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Section ID</span>
+                            <input type="text" class="form-control numeric-input" id="sectionID"
+                                aria-describedby="inputGroup-sizing-default" maxlength="3">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="sectionsCourses">Select a Course</label>
+                            <select class="form-select" id="sectionsCourses">
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="sectionsInstructors">Select an Instructor</label>
+                            <select class="form-select" id="sectionsInstructors">
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Number of Students</span>
+                            <input type="text" class="form-control numeric-input" id="numOfStudents"
+                                aria-describedby="inputGroup-sizing-default" maxlength="4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none insert-group" id="Evaluations">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="assignment">Assignment</label>
+                            <select class="form-select" id="assignment">
+                                <option value="Homework">Homework</option>
+                                <option value="Project">Project</option>
+                                <option value="Quiz">Quiz</option>
+                                <option value="OralPresentation">Oral Presentation</option>
+                                <option value="Report">Report</option>
+                                <option value="Mid-term">Mid-term</option>
+                                <option value="FinalExam">Final Exam</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3 d-none" id="assignmentOtherDiv">
+                            <span class="input-group-text">Assignment Other</span>
+                            <input type="text" class="form-control text-input-insert" id="assignmentOther"
+                                aria-describedby="inputGroup-sizing-default" maxlength="100">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="evaluationSection">Select a Section</label>
+                            <select class="form-select" id="evaluationSection">
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Instructor ID</span>
+                            <input type="text" class="form-control" id="evalInstID" disabled
+                                aria-describedby="inputGroup-sizing-default" maxlength="8">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="evalGoals">Select a Goal</label>
+                            <select class="form-select" id="evalGoals">
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <button type="button" class="btn btn-success" id="loadEval">Load Previous
+                                Evalulation</button>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Students with Grade of A</span>
+                            <input type="text" class="form-control numeric-input eval-load" id="gradesA" disabled
+                                aria-describedby="inputGroup-sizing-default" maxlength="3">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Students with Grade of B</span>
+                            <input type="text" class="form-control numeric-input eval-load" id="gradesB" disabled
+                                aria-describedby="inputGroup-sizing-default" maxlength="3">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Students with Grade of C</span>
+                            <input type="text" class="form-control numeric-input eval-load" id="gradesC" disabled
+                                aria-describedby="inputGroup-sizing-default" maxlength="3">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Students with Grade of F</span>
+                            <input type="text" class="form-control numeric-input eval-load" id="gradesF" disabled
+                                aria-describedby="inputGroup-sizing-default" maxlength="3">
+                        </div>
+                        <div class="col-sm-4 well">
+                            <textarea class="form-control eval-load text-input-insert" id="evalText" maxlength="255"
+                                disabled placeholder="Type in your Evaluation" rows="5"></textarea>
+                            <span class="pull-right label label-default" id="count_message"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline" id="insertButton">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <div class="invalid-feedback d-none" id="errormMessageInsert">Invalid input
+                                detected: SQL injection attempt.</div>
+                            <button type="button" class="btn btn-success" id="submitData">Submit Data</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade show" id="query" role="tabpanel" aria-labelledby="query-tab">
+                <div class="form-inline">
+                    <div class="container">
+                        <select class="form-select form-select-lg mb-3" id="querySelect">
+                            <option selected>Choose an Query Option</option>
+                            <option value="DegreeCourses">Courses for a Degree</option>
+                            <option value="DegreeSectionsRange">Degree Sections in a Year Range</option>
+                            <option value="DegreeAllGoalsQuery">All Goals for a Degree</option>
+                            <option value="CoursesDegreeGoalQuery">Courses Associated with Degree and Goal</option>
+                            <option value="CourseSectionRange">Course Sections in a Year Range</option>
+                            <option value="InstructorSectionRange">Instructor's Sections in a Year Range</option>
+                            <option value="SemesterSectionsEval">Semester's Sections Evaluations Info</option>
+                            <option value="SemesterPassingPercentage">Semester Passing Percentage Info</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none query-group" id="DegreeCourses">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="degreeCoursesQueryList">Select a Degree</label>
+                            <select class="form-select" id="degreeCoursesQueryList">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none query-group" id="DegreeSectionsRange">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="degreeSectionsQueryList">Select a Degree</label>
+                            <select class="form-select" id="degreeSectionsQueryList">
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Start Year</span>
+                            <input class="date-own form-control" style="width: 300px;" type="text"
+                                id="degreeSectionsStartYear">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">End Year</span>
+                            <input class="date-own form-control" style="width: 300px;" type="text"
+                                id="degreeSectionsEndYear">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none query-group" id="DegreeAllGoalsQuery">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="degreeAllGoalsQueryList">Select a Degree</label>
+                            <select class="form-select" id="degreeAllGoalsQueryList">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none query-group" id="CoursesDegreeGoalQuery">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="goalsForDGCQuery">Select a Goal</label>
+                            <select class="form-select" id="goalsForDGCQuery">
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="degreesForDGCQuery">Select a Degree</label>
+                            <select class="form-select" id="degreesForDGCQuery">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none query-group" id="CourseSectionRange">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="courseSectionsQueryList">Select a Course</label>
+                            <select class="form-select" id="courseSectionsQueryList">
+                            </select>
+                        </div>
+
+                        <!-- 
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="courseSectionsSemester">Semester</label>
+                            <select class="form-select" id="courseSectionsSemester">
+                                <option value="Spring">Spring</option>
+                                <option value="Summer">Summer</option>
+                                <option value="Fall">Fall</option>
+                            </select>
+                        </div>
+                        -->
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Start Year</span>
+                            <input class="date-own form-control" style="width: 300px;" type="text"
+                                id="courseSectionsStartYear">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">End Year</span>
+                            <input class="date-own form-control" style="width: 300px;" type="text"
+                                id="courseSectionsEndYear">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none query-group" id="InstructorSectionRange">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="instSectionsQueryList">Select an Instructor</label>
+                            <select class="form-select" id="instSectionsQueryList">
+                            </select>
+                        </div>
+
+                        <!-- 
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="instSectionsSemester">Semester</label>
+                            <select class="form-select" id="instSectionsSemester">
+                                <option value="Spring">Spring</option>
+                                <option value="Summer">Summer</option>
+                                <option value="Fall">Fall</option>
+                            </select>
+                        </div>
+                        -->
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Start Year</span>
+                            <input class="date-own form-control" style="width: 300px;" type="text"
+                                id="instSectionsStartYear">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">End Year</span>
+                            <input class="date-own form-control" style="width: 300px;" type="text"
+                                id="instSectionsEndYear">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none query-group" id="SemesterSectionsEval">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="semesterForSSEQuery">Semester</label>
+                            <select class="form-select" id="semesterForSSEQuery">
+                                <option value="Spring">Spring</option>
+                                <option value="Summer">Summer</option>
+                                <option value="Fall">Fall</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Semester Year</span>
+                            <input class="date-own form-control" style="width: 300px;" type="text" id="yearForSSEQuery">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline d-none query-group" id="SemesterPassingPercentage">
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="semesterForPassing">Semester</label>
+                            <select class="form-select" id="semesterForPassing">
+                                <option value="Spring">Spring</option>
+                                <option value="Summer">Summer</option>
+                                <option value="Fall">Fall</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Semester Year</span>
+                            <input class="date-own form-control" style="width: 300px;" type="text" id="yearForPassing">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control numeric-input" aria-label="Percentage" maxlength="2"
+                                id="percentageForPassing">
+                            <div class="input-group-append">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline" id="queryButton">
+                    <div class="container">
+                        <div id="queryTableDiv">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <button type="button" class="btn btn-success" id="loadQuery">Load Query</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="messageModalLabel">Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Message content will be injected here -->
+                        <p id="modalMessageContent">This is a placeholder message.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="closeModal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

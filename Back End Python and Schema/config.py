@@ -1,0 +1,5 @@
+# Configure MySQL
+MYSQL_HOST = '127.0.0.1'
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = 'pw5330'
+MYSQL_DB = 'cs7330proj'
