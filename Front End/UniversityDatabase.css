@@ -57,3 +57,29 @@ h1.display-1 {
     background-color: #f9f9f9; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
+
+/* Style for the Submit Data button */
+#submitData {
+    background-color: #28a745; /* Bootstrap's success green */
+    color: white; /* White text */
+    font-size: 1.1rem; /* Slightly larger font */
+    font-weight: bold;
+    padding: 10px 20px; /* Add padding for a larger button */
+    border-radius: 5px; /* Rounded corners */
+    border: none; /* Remove default border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+/* Hover effect for the button */
+#submitData:hover {
+    background-color: #39c454; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+}
+
+/* Active (pressed) state for the button */
+#submitData:active {
+    background-color: #32613d; /* Even darker green */
+    transform: scale(0.98); /* Slight depression effect */
+}
