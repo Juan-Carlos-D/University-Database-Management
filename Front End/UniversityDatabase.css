@@ -1,9 +1,18 @@
+html, body {
+    height: 100%; /* Use the full height of the viewport */
+    margin: 0; /* Remove default margin */
+    overflow: hidden; /* Prevent page scrollbars */
+}
+
 body {
-    background-color: #092d44;
+    display: flex;
+    flex-direction: column;
+    background-color: #092d44; /* Maintain your background color */
 }
 
 .jumbotron {
     margin: 25px 20px;
+    flex: 0 0 auto; /* Prevents the jumbotron from growing or shrinking */
 }
 
 h1.display-1 {
@@ -15,9 +24,16 @@ h1.display-1 {
     padding: 30px;
 }
 
-/* Style for the overall nav tabs container */
+form#degreeForm {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto; /* Allows the form to grow and take remaining space */
+    overflow: hidden; /* Prevent scrollbars on the form itself */
+}
+
 .nav-tabs {
     border: none;
+    margin-bottom: 0; /* Ensure no extra spacing below the tabs */
 }
 
 /* Style for individual nav tab items */
@@ -48,16 +64,18 @@ h1.display-1 {
 .nav-tabs .nav-link:hover {
     background-color: #0056b3; 
     color: white; 
-
 }
 
-/* Style for the tab content */
 .tab-content {
     padding: 20px;
     background-color: #f9f9f9; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    height: 75vh;
+    flex: 1 1 auto; /* Makes the tab content expand to fill the remaining space */
+    overflow-y: auto; /* Enables scrolling for overflowing content */
+    height: 0; /* Add this to ensure it doesn't push beyond the viewport */
+    min-height: 0; /* Prevent height conflicts */
 }
+
 
 /* General styles for both buttons */
 #submitData, #loadQuery {
