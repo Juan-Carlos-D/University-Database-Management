@@ -77,8 +77,8 @@ form#degreeForm {
 }
 
 
-/* General styles for both buttons */
-#submitData, #loadQuery {
+/* General styles for all three buttons */
+#submitData, #loadQuery, #loadEval {
     background-color: #28a745; /* Bootstrap's success green */
     color: white; /* White text */
     font-size: 1.1rem; /* Slightly larger font */
@@ -91,40 +91,14 @@ form#degreeForm {
     transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
 }
 
-/* Hover effect for both buttons */
-#submitData:hover, #loadQuery:hover {
+/* Hover effect for all three buttons */
+#submitData:hover, #loadQuery:hover, #loadEval:hover {
     background-color: #39c454; /* Darker green on hover */
     transform: scale(1.05); /* Slightly enlarge the button */
 }
 
-/* Active (pressed) state for both buttons */
-#submitData:active, #loadQuery:active {
-    background-color: #32613d; /* Even darker green */
-    transform: scale(0.98); /* Slight depression effect */
-}
-
-/* Style for the Load Previous Evaluation button */
-#loadEval {
-    background-color: #28a745; /* Bootstrap's success green */
-    color: white; /* White text */
-    font-size: 1.1rem; /* Slightly larger font */
-    font-weight: bold;
-    padding: 10px 20px; /* Add padding for a larger button */
-    border-radius: 5px; /* Rounded corners */
-    border: none; /* Remove default border */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
-}
-
-/* Hover effect for the button */
-#loadEval:hover {
-    background-color: #39c454; /* Darker green on hover */
-    transform: scale(1.05); /* Slightly enlarge the button */
-}
-
-/* Active (pressed) state for the button */
-#loadEval:active {
+/* Active (pressed) state for all three buttons */
+#submitData:active, #loadQuery:active, #loadEval:active {
     background-color: #32613d; /* Even darker green */
     transform: scale(0.98); /* Slight depression effect */
 }
