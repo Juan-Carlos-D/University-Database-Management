@@ -22,39 +22,38 @@ h1.display-1 {
 
 /* Style for individual nav tab items */
 .nav-item {
-    margin-right: 5px; /* Add space between the tabs */
+    margin-right: 5px; 
 }
 
 /* Style for the active tab button */
 .nav-tabs .nav-link.active {
-    background-color: #007BFF; /* Blue background for the active tab */
-    color: white; /* White text color for the active tab */
-    font-weight: bold; /* Make the active tab text bold */
-    border-radius: 5px 5px 0 0; /* Rounded top corners */
+    background-color: #007BFF; 
+    color: white;
+    font-weight: bold; 
+    border-radius: 5px 5px 0 0; 
 }
 
 /* Style for non-active tab buttons */
 .nav-tabs .nav-link {
-    color: #007BFF; /* Blue text color */
-    background-color: white; /* White background */
-
-    border-radius: 5px 5px 0 0; /* Rounded top corners */
-    font-weight: normal; /* Default weight for non-active tabs */
-    padding: 10px 20px; /* Add padding to the tab buttons */
-    text-transform: uppercase; /* Uppercase text for tabs */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    color: #007BFF;
+    background-color: white; 
+    border-radius: 5px 5px 0 0; 
+    font-weight: normal;
+    padding: 10px 20px; 
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* Style for tab buttons on hover */
 .nav-tabs .nav-link:hover {
-    background-color: #0056b3; /* Darker blue background when hovered */
-    color: white; /* White text on hover */
+    background-color: #0056b3; 
+    color: white; 
 
 }
 
-/* Style for the tab content (optional) */
+/* Style for the tab content */
 .tab-content {
-    padding: 20px; /* Add padding around the tab content */
-    background-color: #f9f9f9; /* Light background for the content */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    padding: 20px;
+    background-color: #f9f9f9; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
