@@ -3,11 +3,14 @@ body {
 }
 
 .jumbotron {
-    margin: 40px 30px;
+    margin: 25px 20px;
 }
 
 h1.display-1 {
     color: white;
     text-align: center;
-    font-size: 100px;
+    font-size: 80px;
+    font-weight: 800;
+    margin: 0;
+    padding: 30px;
 }
