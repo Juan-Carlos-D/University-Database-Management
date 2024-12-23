@@ -1,6 +1,6 @@
 # University Database Management System
 
-![University System Screenshot]('../University Database Management Project/Assets/uni.png')
+![University System Screenshot]('../../Assets/uni.png')
 
 ## Overview  
 The **University Database Management System** is a comprehensive web-based application designed to assist university departments in the review and evaluation of their academic programs. The system supports the collection, storage, and analysis of data related to degrees, courses, instructors, and student performance.  
