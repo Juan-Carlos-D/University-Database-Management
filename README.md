@@ -1,9 +1,9 @@
-# Data-Driven University Program Management & Evaluation System
+# Comprehensive Academic Program Monitoring & Evaluation System
 
 ![University System Screenshot](Assets/uni.png)
 
 ## Overview  
-The **Data-Driven University Program Management & Evaluation System** is a comprehensive web-based application built to assist university departments in the review and evaluation of academic programs. This system facilitates the collection, storage, and analysis of data related to degrees, courses, instructors, and student performance, ensuring academic evaluations are data-driven, organized, and accessible.
+The **Comprehensive Academic Program Monitoring & Evaluation System** is a comprehensive web-based application built to assist university departments in the review and evaluation of academic programs. This system facilitates the collection, storage, and analysis of data related to degrees, courses, instructors, and student performance, ensuring academic evaluations are data-driven, organized, and accessible.
 
 The system aims to streamline the evaluation process, enabling administrators and instructors to manage program goals, assess student achievements, and gather actionable feedback for continuous improvement. By centralizing program data and offering detailed insights, the system helps optimize academic program quality and effectiveness.
 
