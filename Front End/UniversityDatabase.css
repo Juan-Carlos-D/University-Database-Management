@@ -34,6 +34,10 @@ form#degreeForm {
 .nav-tabs {
     border: none;
     margin-bottom: 0; /* Ensure no extra spacing below the tabs */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 150px;
 }
 
 /* Style for individual nav tab items */
