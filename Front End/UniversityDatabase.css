@@ -7,7 +7,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    background-color: #323E45; /* Maintain your background color */
+    background-color: #323E45; 
 }
 
 .jumbotron {
