@@ -37,7 +37,7 @@ form#degreeForm {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin: 0 150px;
+    margin: 0 390px;
 }
 
 /* Style for individual nav tab items */
@@ -72,11 +72,11 @@ form#degreeForm {
 
 .tab-content {
     padding: 20px;
-    background-color: #919B71;
-    /* background-image: url('/Assets/lib3.jpg');
+    /* background-color: #919B71; */
+    background-image: url('/Assets/lib3.jpg');
     background-size: 100% auto;
     background-position: bottom;
-    background-repeat: no-repeat; */
+    background-repeat: no-repeat;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     flex: 1 1 auto; /* Makes the tab content expand to fill the remaining space */
     overflow-y: auto; /* Enables scrolling for overflowing content */
