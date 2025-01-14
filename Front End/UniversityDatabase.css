@@ -7,7 +7,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    background-color: #092d44; /* Maintain your background color */
+    background-color: #323E45; /* Maintain your background color */
 }
 
 .jumbotron {
@@ -43,7 +43,7 @@ form#degreeForm {
 
 /* Style for the active tab button */
 .nav-tabs .nav-link.active {
-    background-color: #007BFF; 
+    background-color: #222a2e; 
     color: white;
     font-weight: bold; 
     border-radius: 5px 5px 0 0; 
@@ -51,7 +51,7 @@ form#degreeForm {
 
 /* Style for non-active tab buttons */
 .nav-tabs .nav-link {
-    color: #007BFF;
+    color: #222a2e;
     background-color: white; 
     border-radius: 5px 5px 0 0; 
     font-weight: normal;
@@ -62,13 +62,17 @@ form#degreeForm {
 
 /* Style for tab buttons on hover */
 .nav-tabs .nav-link:hover {
-    background-color: #0056b3; 
+    background-color: #1C2427; 
     color: white; 
 }
 
 .tab-content {
     padding: 20px;
-    background-color: #f9f9f9; 
+    background-color: #919B71;
+    /* background-image: url('/Assets/lib3.jpg');
+    background-size: 100% auto;
+    background-position: bottom;
+    background-repeat: no-repeat; */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     flex: 1 1 auto; /* Makes the tab content expand to fill the remaining space */
     overflow-y: auto; /* Enables scrolling for overflowing content */
